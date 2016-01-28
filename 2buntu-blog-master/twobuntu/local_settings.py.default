@@ -1,0 +1,71 @@
+"""
+Installation-specific settings for 2buntu
+
+Anything that is specific to your installation of 2buntu should
+be included here and NOT in settings.py
+"""
+
+# Set DEBUG to True to enable full debugging in your application
+DEBUG = False
+TEMPLATE_DEBUG = DEBUG
+
+# Set READ_ONLY to True to trigger read-only mode
+# - a banner will be displayed along the top of the page
+# - login, registration, and sessions are disabled
+READ_ONLY = False
+
+# Enable the console email backend when running in debug mode
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Staff members
+ADMINS = (
+    #('John Smith', 'john@example.com'),
+    #('Mary Smith', 'mary@example.com'),
+)
+
+# Database storage engine(s) for the project
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
+    },
+}
+
+# Cache(s) for the project
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379/0',
+    },
+}
+
+# Absolute filesystem path where media (uploaded) and static files will be stored
+MEDIA_ROOT = ''
+STATIC_ROOT = ''
+
+# Absolute filesystem path where backups will be stored
+ARCHIVE_DIRECTORY = ''
+
+# URL for media and static files
+MEDIA_URL = '/media/'
+STATIC_URL = '/static/'
+
+# Keys for reCAPTCHA (to prevent spam form submissions)
+RECAPTCHA_SITE_KEY = ''
+RECAPTCHA_SECRET_KEY = ''
+
+# If you are using Twitter integration, then you will need to supply values for these settings
+TWITTER = {
+    'token': '',
+    'token_secret': '',
+    'consumer_key': '',
+    'consumer_secret': '',
+}
+
+# This value must be customized
+SECRET_KEY = ''

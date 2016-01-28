@@ -1,0 +1,15 @@
+{% load gravatar %}
+
+<h4 class="truncate">
+    <a href="{{ article.get_absolute_url }}" title="{{ article }}">{{ article }}</a><br>
+    <small>
+        <span class="timeago" title="{{ article.date|date:"c" }}">{{ article.date|date:"DATETIME_FORMAT" }}</span>
+        by
+        <a href="{{ article.author.profile.get_absolute_url }}" title="{{ article.author.profile }}">
+            {{ article.author.profile }}
+        </a>
+    </small>
+</h4>
+<p>
+    {{ article.render|striptags|truncatewords:60 }}
+</p>

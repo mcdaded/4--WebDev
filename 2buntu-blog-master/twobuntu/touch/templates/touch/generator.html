@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-4 text-center">
+            <div id="device-preview" class="spinner-container">
+                <img src="{% get_static_prefix %}img/touch/{{ form.template.value }}.jpg">
+                <div class="spinner"></div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <h2>Ubuntu Touch Device Art Generator</h2>
+            <p>
+                You've just finished writing an Ubuntu Touch app and you're ready to start distributing it through the Ubuntu Store.
+                How do you begin promoting your app? How can you show visitors to your blog what your app actually looks like on a device?
+            </p>
+            <p>
+                We've got you covered!
+            </p>
+            <p>
+                Upload a screenshot of your app and click the generate button below.
+                Our server will generate a picture of your app running on an actual Ubuntu phone for you to use wherever you'd like.
+            </p>
+            <p>
+                <strong>Note:</strong> for best results, the supplied image should match the dimensions displayed on the screen.
+                Our tool will automatically resize and crop the image if necessary.
+            </p>
+            <hr>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-5">
+                        {% with form.template as field %}
+                            {% include "fragments/field.html" %}
+                        {% endwith %}
+                        {% with form.image as field %}
+                            {% include "fragments/field.html" %}
+                        {% endwith %}
+                    </div>
+                    <div class="col-md-5 col-md-offset-1">
+                        <h4>Additional Options</h4>
+                        {% with form.add_panel as field %}
+                            {% include "fragments/field.html" %}
+                        {% endwith %}
+                        {% with form.glossy_screen as field %}
+                            {% include "fragments/field.html" %}
+                        {% endwith %}
+                    </div>
+                </div>
+                <hr>
+                <button type="submit" class="btn btn-xl btn-primary">
+                    <span class="fa fa-cogs"></span>
+                    Generate
+                </button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ block.super }}
+    <script>
+        $(function() {
+
+            // Find the preview image and spinner
+            var $container = $('#device-preview'),
+                $img = $('img', $container);
+
+            // Hide the spinner when the page loads
+            $img.load(function() {
+                $container.removeClass('spinning');
+            });
+
+            // Show the spinner and load the preview when the selection changes
+            $('#id_template').change(function() {
+                var src = '{% get_static_prefix %}img/touch/' + $(this).val() + '.jpg';
+                if(src != $img.attr('src')) {
+                    $container.addClass('spinning');
+                    $img.attr('src', src);
+                }
+            }).change();
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load gravatar %}
+
+{% block rss %}
+    <link rel="alternate" type="application/rss+xml" title="2buntu Articles" href="{% url "accounts:rss" profile.user.id %}" />
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-sm-4">
+                    <img src="{{ profile.user.email|gravatar:256 }}" class="img-thumbnail">
+                </div>
+                <div class="col-lg-8">
+                    <h2>
+                        {{ profile }}<br>
+                        <small>
+                            Last seen
+                            {% with profile.user.last_login as ldate %}
+                                <span class="timeago" title="{{ ldate|date:"c" }}">{{ ldate|date:"DATETIME_FORMAT" }}</span>
+                            {% endwith %}
+                        </small>
+                    </h2>
+                    <table class="table">
+                        {% if profile.website %}
+                            <tr>
+                                <th>Website:</th>
+                                <td><a href="{{ profile.website }}">{{ profile.website }}</a></td>
+                            </tr>
+                        {% endif %}
+                        {% if profile.location %}
+                            <tr>
+                                <th>Location:</th>
+                                <td>{{ profile.location }}</td>
+                            </tr>
+                        {% endif %}
+                        {% if profile.birthday %}
+                            <tr>
+                                <th>Age:</th>
+                                <td>{{ profile.age }}</td>
+                            </tr>
+                        {% endif %}
+                    </table>
+                </div>
+            </div>
+            <hr>
+            {% include "articles/fragments/articles.html" %}
+        </div>
+        <div class="col-sm-4">
+            {% if user.is_staff or user == profile.user %}
+                <div class="alert alert-warning">
+                    <p>You have permission to edit this profile.</p>
+                    <br>
+                    <a href="{% url "accounts:edit" profile.user.id %}" class="btn btn-sm btn-primary">
+                        <span class="fa fa-edit"></span>
+                        Edit Profile
+                    </a>
+                </div>
+            {% endif %}
+            <div class="well">
+                {% if profile.bio %}
+                    <p>{{ profile.bio|linebreaksbr }}</p>
+                {% else %}
+                    <p class="text-muted">This user has not yet completed their profile.</p>
+                {% endif %}
+            </div>
+            <div class="well">
+                <a href="{% url "accounts:rss" profile.user.id %}">
+                    <span class="fa fa-rss"></span>
+                    {{ profile }}'s Articles Feed
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block meta %}
+    <meta name="description" content="A blog created by Ubuntu community members to provide news, tutorials, reviews, tips, and the occasional rant - all centering around the world's most popular Linux distribution: Ubuntu.">
+    <meta name="google-site-verification" content="BOrMmOCjwsu-XkdXWgqIHA5CP85AZjA2-MZzn8DWkvI">
+    <meta name="wot-verification" content="e3ab301eccb71149c5d5">
+{% endblock %}
+
+{% block rss %}
+    <link rel="alternate" type="application/rss+xml" title="2buntu Articles" href="{% url "rss" %}" />
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-8">
+            {% if not "page" in request.GET %}
+                {% include "articles/fragments/featured.html" %}
+                <hr>
+                {% include "accounts/fragments/authors.html" %}
+                <hr>
+                <h2>Recent Articles</h2>
+                <p>
+                    Looking for more great content? There's more where that came from!
+                    Here are some other articles that have recently been published.
+                </p>
+                <br>
+                {% with articles|slice:"3:" as articles %}
+                    {% include "articles/fragments/articles.html" %}
+                {% endwith %}
+            {% else %}
+                <h2>Archives &mdash; Page {{ request.GET.page }}</h2>
+                <p>
+                    Check out some of our older articles below.
+                    We've been publishing articles for a very long time, so there's
+                    sure to be something here for everybody.
+                </p>
+                <br>
+                {% include "articles/fragments/articles.html" %}
+            {% endif %}
+
+        </div>
+        <div class="col-sm-4">
+            {% include "fragments/search.html" %}
+            <br>
+            {% include "news/fragments/items.html" %}
+            <div class="well">
+                <a href="{% url "rss" %}">
+                    <span class="fa fa-rss"></span>
+                    Latest Articles Feed
+                </a>
+            </div>
+            {% include "categories/fragments/categories.html" %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends "form.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block form_fields %}
+    <div class="row">
+        <div class="col-lg-8">
+            {% with form.title as field %}
+                {% include "fragments/field.html" %}
+            {% endwith %}
+        </div>
+        <div class="col-lg-4">
+            {% with form.category as field %}
+                {% include "fragments/field.html" %}
+            {% endwith %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="form-group{% if form.body.errors %} has-error has-feedback{% endif %}">
+                {% render_field form.body class+="form-control" rows="16" %}
+                {% for error in form.body.errors %}
+                    <p class="help-block text-danger">
+                        <strong>{{ error }}</strong>
+                    </p>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="well">
+                <h4>Writing an Article</h4>
+                <p>
+                    Articles for the 2buntu blog are written in Markdown.
+                    <a href="{% url "articles:markdown" %}" target="_blank">This page</a>
+                    presents an overview of Markdown syntax.
+                </p>
+                <p>
+                    When selecting a category, be as specific as possible.
+                    If your article does not suit one of the existing categories,
+                    please select "miscellaneous" and we will add an appropriate category.
+                </p>
+                <p>
+                    If you need to add an image to your article, please click the "Insert image"
+                    button in the toolbar or
+                    <a href="{% url "images:upload" %}" target="_blank">click here if JavaScript is disabled</a>.
+                    Images are hosted on our servers.
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block form_actions %}
+    <br>
+    <div>
+        <button type="submit" name="action" value="save" class="btn btn-primary">
+            <span class="fa fa-check"></span>
+            Save
+        </button>
+        <button type="submit" name="action" value="continue" class="btn btn-default">
+            <span class="fa fa-edit"></span>
+            Save and Continue Editing
+        </button>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ block.super }}
+    <script src="{% static "js/ace.js" %}"></script>
+    <script src="{% static "js/editor.js" %}"></script>
+    <script src="{% static "js/detect.js" %}"></script>
+    <script>
+        $(function() {
+            if(!isMobile()) {
+                window.editor = new Editor("{% url "images:upload" %}?js");
+                $('#id_title').focus();
+            }
+        });
+    </script>
+{% endblock %}

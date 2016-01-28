@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>{{ title }}</h2>
+    <div class="row">
+        <div class="col-sm-8">
+            {% block description %}
+                <p>{{ description }}</p>
+            {% endblock %}
+        </div>
+    </div>
+    <br>
+    <form method="post"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
+        {% csrf_token %}
+        {% block form_fields %}
+            <div class="row">
+                <div class="col-sm-8">
+                    {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger">{{ error }}</div>
+                    {% endfor %}
+                    {% for field in form %}
+                        {% include "fragments/field.html" %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endblock %}
+        <br>
+        {% block form_actions %}
+            <div>
+                <button type="submit" class="btn btn-primary">
+                    <span class="fa fa-check"></span>
+                    {{ action }}
+                </button>
+                <button type="reset" class="btn btn-default">Reset</button>
+            </div>
+        {% endblock %}
+    </form>
+{% endblock %}

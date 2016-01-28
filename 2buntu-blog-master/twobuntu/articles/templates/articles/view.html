@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load gravatar %}
+
+{% block meta %}
+    <!-- Facebook Open Graph metadata -->
+    <meta property="og:title" content="{{ article }}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:description" content="{{ rendered|striptags|truncatewords:40 }}">
+    <meta property="article:publisher" content="https://www.facebook.com/pages/2buntucom/129981420418132">
+    <meta property="article:section" content="{{ article.category }}">
+    <meta property="article:published_time" content="{{ article.date|date:"c" }}">
+    <!-- Twitter Summary Card metadata -->
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:site" content="@2buntu">
+    <meta property="twitter:title" content="{{ article }}">
+    <meta property="twitter:description" content="{{ rendered|striptags|truncatewords:40 }}">
+    <meta property="twitter:url" content="{{ request.build_absolute_uri }}">
+    {% if article.image or article.category.image %}
+        <!-- An image for the article -->
+        <meta property="og:image" content="{{ article.image.image.url|default:article.category.image.url }}">
+        <meta property="twitter:image" content="{{ article.image.image.url|default:article.category.image.url }}">
+    {% endif %}
+{% endblock  %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-8">
+            {% include "articles/fragments/license.html" %}
+            <h2>
+                {{ article }}
+            </h2>
+            <hr>
+            {% include "articles/fragments/author.html" %}
+            <hr>
+            <div class="article">
+                {{ rendered }}
+            </div>
+            <hr>
+            {% include "articles/fragments/comments.html" %}
+        </div>
+        <div class="col-sm-4">
+            {% if can_edit %}
+                <div class="alert alert-warning">
+                    <p>You have permission to edit this article.</p>
+                    <br>
+                    <a href="{% url "articles:editor" article.id %}" class="btn btn-sm btn-primary">
+                        <span class="fa fa-edit"></span>
+                        Edit Article
+                    </a>
+                </div>
+            {% endif %}
+            {% if not user.is_staff and article.status == article.DRAFT %}
+                <div class="alert alert-warning">
+                    <p>Please click the button below when you are ready to submit your article for publishing.</p>
+                    <br>
+                    <form method="post" action="{% url "articles:modify" "submit" article.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-primary">
+                            <span class="fa fa-check"></span>
+                            Submit Article
+                        </button>
+                    </form>
+                </div>
+            {% endif %}
+            {% if user.is_staff and not article.status == article.PUBLISHED or article.status == article.UNAPPROVED %}
+                <div class="alert alert-warning">
+                    <p>This article has not yet been approved by a staff member.</p>
+                    {% if user.is_staff %}
+                        <br>
+                        <form method="post" action="{% url "articles:modify" "publish" article.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-sm btn-primary">
+                                <span class="fa fa-check"></span>
+                                Publish Article
+                            </button>
+                            {% if request.user == article.author %}
+                                <a href="{% url "articles:delete" article.id %}" class="btn btn-sm btn-primary">
+                                    <span class="fa fa-trash-o"></span>
+                                    Delete Article
+                                </a>
+                            {% endif %}
+                        </form>
+                    {% endif %}
+                </div>
+            {% endif %}
+            {% if user.is_staff and not article.status == article.PUBLISHED %}
+                <div class="alert alert-warning">
+                    <p>
+                        This article can be scheduled for publishing at a later date.
+                    </p>
+                    <br>
+                    <a href="{% url "articles:schedule" id=article.id %}" class="btn btn-sm btn-primary">
+                        <span class="fa fa-calendar"></span>
+                        Schedule Article
+                    </a>
+                </div>
+            {% endif %}
+            {% include "fragments/search.html" %}
+            <br>
+            {% include "articles/fragments/share.html" %}
+            <br>
+            {% include "articles/fragments/related.html" %}
+            <br>
+            {% include "articles/fragments/apps.html" %}
+        </div>
+    </div>
+{% endblock %}
