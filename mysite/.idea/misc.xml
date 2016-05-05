@@ -11,12 +11,8 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 2.7.10 (C:\Users\dmcdade\AppData\Local\Continuum\Anaconda\python.exe)" project-jdk-type="Python SDK" />
-  <component name="PyConsoleOptionsProvider">
-    <option name="myPythonConsoleState">
-      <console-settings sdk-home="C:\Users\dmcdade\AppData\Local\Continuum\Anaconda\envs\primary\python.exe">
-        <option name="mySdkHome" value="C:\Users\dmcdade\AppData\Local\Continuum\Anaconda\envs\primary\python.exe" />
-      </console-settings>
-    </option>
+  <component name="PythonCompatibilityInspectionAdvertiser">
+    <option name="version" value="1" />
   </component>
   <component name="masterDetails">
     <states>
