@@ -45,3 +45,15 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+
+
+# =========================
+# Oversized Files
+# =========================
+*.csv
+*.gz
+*.zip
+*.sqlite
+*.db
+*.xlsx
