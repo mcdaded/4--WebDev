@@ -1,5 +1,7 @@
 {% load static wagtailuserbar %}
 
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -25,20 +27,31 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/danmcdade.css' %}">
 
         {% block extra_css %}
-            {# Override this in templates to add extra stylesheets #}
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         {% endblock %}
     </head>
 
     <body class="{% block body_class %}{% endblock %}">
-        {% wagtailuserbar %}
+        <div class="page-header">
+            {% wagtailuserbar 'top-right' %}
+            <h1><a href="/">Dan McDade</a></h1>
+        </div>
+        </div>
 
-        {% block content %}{% endblock %}
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                {% block content %}{% endblock %}
 
-        {# Global javascript #}
-        <script type="text/javascript" src="{% static 'js/danmcdade.js' %}"></script>
+                {# Global javascript #}
+                <script type="text/javascript" src="{% static 'js/danmcdade.js' %}"></script>
 
-        {% block extra_js %}
-            {# Override this in templates to add extra javascript #}
-        {% endblock %}
+                {% block extra_js %}
+                    {# Override this in templates to add extra javascript #}
+                {% endblock %}
+                </div>
+            </div>
+        </div>
     </body>
 </html>
