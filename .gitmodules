@@ -1,3 +1,0 @@
-[submodule "pelican_site/plugins/ipynb"]
-	path = pelican_site/plugins/ipynb
-	url = git://github.com/danielfrg/pelican-ipynb.git
