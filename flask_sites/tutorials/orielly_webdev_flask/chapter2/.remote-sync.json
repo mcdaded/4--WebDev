@@ -1,0 +1,19 @@
+{
+  "logger": {
+    "title": "Remote Sync"
+  },
+  "uploadOnSave": false,
+  "useAtomicWrites": false,
+  "deleteLocal": true,
+  "hostname": "10.0.0.33",
+  "port": "22",
+  "target": "/home/dan/github/4--WebDev/flask_sites/tutorials/orielly_webdev_flask/chapter2/",
+  "ignore": [
+    ".remote-sync.json",
+    ".git/**"
+  ],
+  "username": "dan",
+  "keyfile": "C:\\Users\\Dan\\Documents\\Computer Stuff\\private_key.ppk",
+  "watch": [],
+  "transport": "scp"
+}
