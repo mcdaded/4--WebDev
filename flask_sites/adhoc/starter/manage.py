@@ -9,6 +9,7 @@ danmcdade_flask - 'manage.py' created on 2/1/2018 at 5:17 PM
 
 import os
 from app import create_app, db
+from app.models import User, Role
 from flask_script import Manager, Shell
 from flask_migrate import Migrate, MigrateCommand
 
