@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
-<head lang="en">
-  <meta charset="UTF-8">
-  <title>Runnerly Dashboard</title>
-</head>
+{% block title %}Flasky{% endblock %}
 
+{% block page_content %}
 <body>
   <div class="container">
     <h1>Runnerly Dashboard</h1> <br>
@@ -15,5 +13,4 @@
   <script src="/static/react/react-dom.js"></script>
   <script src="/static/dashboard.js"></script>
 </body>
-
-</html>
+{% endblock %}
