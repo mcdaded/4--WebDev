@@ -1,26 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <style> /* set the CSS */
-    body { font: 12px Arial;}
-    path {
-      stroke-width: 2;
-      fill: none;
-    }
-    .axis path, .axis line {
-      fill: none;
-      stroke: grey;
-      stroke-width: 1;
-      shape-rendering: crispEdges;
-    }
-    .area {
-      fill: #F0F8FF;
-      stroke-width: 0;
-    }
-  </style>
-</head>
+{% extends "bootstrap/base.html" %}
+
+{% block title %}Flasky{% endblock %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+{% endblock %}
+
+{% block content %}
 <body>
+<div id='graphDiv'></div>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<!-- Or you can comment out a large number of lines.
+<script type="text/js", src = "{{ url_for('static', filename='js/stockchart.js') }}"></script>
+-->
 <div id='graphDiv'></div>
 
 <script src="http://d3js.org/d3.v3.min.js"></script>
@@ -71,7 +64,7 @@
         .attr("width", svgWidth)
         .attr("height", svgHeight)
       .append("g")
-        .attr("transform", 
+        .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")")
 
     // define function
@@ -140,4 +133,4 @@ draw(graphData);
 
 </script>
 </body>
-</html>
+{% endblock %}
