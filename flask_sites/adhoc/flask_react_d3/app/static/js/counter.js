@@ -19,12 +19,16 @@ class Timer extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        Seconds: {this.state.seconds}
-      </div>
+    return React.createElement(
+      "div",
+      null,
+      "Seconds: ",
+      this.state.seconds
     );
   }
 }
 
-ReactDOM.render(<Timer />, mountNode);
+ReactDOM.render(
+  React.createElement(Timer, null),
+  document.getElementById('content')
+);

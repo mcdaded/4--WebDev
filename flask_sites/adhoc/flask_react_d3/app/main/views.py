@@ -15,6 +15,12 @@ from .. import db
 def index():
     return render_template('index.html')
 
+
 @main.route('/js', methods=['GET', 'POST'])
 def testjs():
     return render_template('testjs.html')
+
+
+@main.route('/counter', methods=['GET', 'POST'])
+def testcounter():
+    return render_template('counterjs.html')
