@@ -1,0 +1,1 @@
+This is a starter template for working with React.js. Ideally this will be a good working document to handle the initial React.js work.
