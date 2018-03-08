@@ -24,3 +24,8 @@ def greetingsjs():
 @main.route('/counter', methods=['GET', 'POST'])
 def counterjs():
     return render_template('counterjs.html')
+
+
+@main.route('/tic_tac_toe', methods=['GET', 'POST'])
+def tictactoejs():
+    return render_template('tic_tac_toe.html')
