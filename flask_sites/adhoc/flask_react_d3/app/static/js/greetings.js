@@ -1,10 +1,10 @@
-var realPython = React.createClass({
+var greetingContent = React.createClass({
   render: function() {
     return (<h2>Greetings, from React Python!</h2>);
   }
 });
 
 ReactDOM.render(
-  React.createElement(realPython, null),
+  React.createElement(greetingContent, null),
   document.getElementById('greetings_content')
 );
