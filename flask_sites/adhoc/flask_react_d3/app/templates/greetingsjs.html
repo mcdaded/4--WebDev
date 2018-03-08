@@ -12,15 +12,15 @@
 </head>
 
 <body>
-  <div class="container">
-    <h1>Flask React</h1>
-    <br>
-    <div id="content"></div>
-  </div>
   <!-- scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
-  <script type="text/jsx", src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script type="text/jsx", src="{{ url_for('static', filename='js/greetings.js') }}"></script>
+  <div class="container">
+    <h1>Flask React</h1>
+    <br>
+    <div id="greetings_content"></div>
+  </div>
 </body>
 {% endblock %}

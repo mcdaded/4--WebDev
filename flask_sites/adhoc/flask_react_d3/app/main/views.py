@@ -16,11 +16,11 @@ def index():
     return render_template('index.html')
 
 
-@main.route('/js', methods=['GET', 'POST'])
-def testjs():
-    return render_template('testjs.html')
+@main.route('/greetings', methods=['GET', 'POST'])
+def greetingsjs():
+    return render_template('greetingsjs.html')
 
 
 @main.route('/counter', methods=['GET', 'POST'])
-def testcounter():
+def counterjs():
     return render_template('counterjs.html')

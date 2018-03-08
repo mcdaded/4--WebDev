@@ -1,33 +1,56 @@
-/*** @jsx React.DOM */
+// https://codepen.io/smonn/pen/KzezEw
+// http://tutorialzine.com/2014/07/5-practical-examples-for-learning-facebooks-react-framework/
 
-var realPython = React.createClass({
-    constructor(props) {
-      super(props);
-      this.state = { seconds: 0 };
-    }
+var TimerExample = React.createClass({
 
-    tick() {
-      this.setState(prevState => ({
-        seconds: prevState.seconds + 1
-      }));
-    }
+    getInitialState: function(){
 
-    componentDidMount() {
-      this.interval = setInterval(() => this.tick(), 1000);
-    }
+        // This is called before our render function. The object that is
+        // returned is assigned to this.state, so we can use it later.
 
-    componentWillUnmount() {
-      clearInterval(this.interval);
-    }
+        return { elapsed: 0 };
+    },
+
+    componentDidMount: function(){
+
+        // componentDidMount is called by react when the component
+        // has been rendered on the page. We can set the interval here:
+
+        this.timer = setInterval(this.tick, 50);
+    },
+
+    componentWillUnmount: function(){
+
+        // This method is called immediately before the component is removed
+        // from the page and destroyed. We can clear the interval here:
+
+        clearInterval(this.timer);
+    },
+
+    tick: function(){
+
+        // This function is called every 50 ms. It updates the
+        // elapsed counter. Calling setState causes the component to be re-rendered
+
+        this.setState({elapsed: new Date() - this.props.start});
+    },
 
     render: function() {
-      return (<h2>"Seconds: "</h2>);
-      );
+
+        // Calculate elapsed to tenth of a second:
+        var elapsed = Math.round(this.state.elapsed / 100);
+
+        // This will give a number with one digit after the decimal dot (xx.x):
+        var seconds = (elapsed / 10).toFixed(1);
+
+        // Although we return an entire <p> element, react will smartly update
+        // only the changed parts, which contain the seconds variable.
+
+        return <p>This example was started <b>{seconds} seconds</b> ago.</p>;
     }
-  }
 });
 
 ReactDOM.render(
-  React.createElement(realPython, null),
-  document.getElementById('content')
+    <TimerExample start={Date.now()} />,
+    document.getElementById('counter_content')
 );
