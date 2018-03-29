@@ -16,12 +16,12 @@ def index():
     return render_template('index.html')
 
 
-@main.route('/greetings', methods=['GET', 'POST'])
+@main.route('/greetings', methods=['GET'])
 def greetingsjs():
     return render_template('greetingsjs.html')
 
 
-@main.route('/counter', methods=['GET', 'POST'])
+@main.route('/counter', methods=['GET'])
 def counterjs():
     return render_template('counterjs.html')
 
@@ -29,3 +29,8 @@ def counterjs():
 @main.route('/tic_tac_toe', methods=['GET', 'POST'])
 def tictactoejs():
     return render_template('tic_tac_toe.html')
+
+
+@main.route('/heart', methods=['GET'])
+def heart():
+    return render_template('heart.html')
