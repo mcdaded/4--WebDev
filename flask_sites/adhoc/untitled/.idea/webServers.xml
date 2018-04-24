@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="sftp://dmcdade@dmcdade.dev.insightsquared.com:22/home/dmcdade/.envir_dmcdade/system_base/bin/python" name="sftp://dmcdade@dmcdade.dev.insightsquared.com:22/home/dmcdade/.envir_dmcdade/system_base/bin/python">
+        <fileTransfer host="dmcdade.dev.insightsquared.com" port="22" privateKey="C:\Users\dmcdade\Desktop\Computer Stuff\is2_key\private_key.ppk" accessType="SFTP" keyPair="true">
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
