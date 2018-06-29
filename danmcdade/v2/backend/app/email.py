@@ -1,10 +1,3 @@
-"""
-danmcdade_flask - 'email' created on 2/1/2018 at 5:17 PM
-
-@author: dmcdade
-"""
-
-
 from threading import Thread
 from flask import current_app, render_template
 from flask_mail import Message
