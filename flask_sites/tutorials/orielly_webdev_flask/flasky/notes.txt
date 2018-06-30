@@ -1,0 +1,25 @@
+virtual environment
+
+pip install virtualenvwrapper
+mkvirtualenv flasky
+
+workon flasky
+deactivate
+
+
+python manage.py db init
+python manage.py db migrate
+python manage.py db upgrade
+
+python manage.py shell
+
+u = User(username='admin@flasky.com', email='admin@flasky.com', password='Test123', confirmed=True)
+db.session.add(u)
+db.session.commit()
+
+
+u = User.query.filter_by(email='admin@flasky.com').one()
+
+p = Post(body='First Post?', author_id=1)
+db.session.add(p)
+db.session.commit()
