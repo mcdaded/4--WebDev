@@ -14,8 +14,10 @@ from ..decorators import admin_required, permission_required
 def index():
     form = PostForm()
     if current_user.can(Permission.WRITE) and form.validate_on_submit():
-        post = Post(body=form.body.data,
-                    author=current_user._get_current_object())
+        post = Post(
+                title=form.title.data,
+                body=form.body.data,
+                author=current_user._get_current_object())
         db.session.add(post)
         db.session.commit()
         return redirect(url_for('.index'))
@@ -34,6 +36,7 @@ def new_post():
     form = PostForm()
     if form.validate_on_submit():
         post = Post(
+            title=form.title.data,
             body=form.body.data,
             author=current_user._get_current_object()
         )
