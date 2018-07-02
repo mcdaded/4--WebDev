@@ -6,6 +6,9 @@ mkvirtualenv danmcdade
 workon danmcdade
 deactivate
 
+conda info -e
+conda create -n flasky python=3.6
+activate flasky
 
 python manage.py db init
 python manage.py db migrate
