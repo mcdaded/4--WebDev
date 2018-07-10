@@ -12,15 +12,12 @@ mail = Mail()
 moment = Moment()
 db = SQLAlchemy()
 pagedown = PageDown()
-
 login_manager = LoginManager()
 login_manager.login_view = 'auth.login'
 
 
-from flask_admin import Admin
-from flask_admin.contrib.sqla import ModelView
-from .models import User, Post
-
+# import flask_admin
+# from .models import User, Post
 
 
 def create_app(config_name):
@@ -35,9 +32,7 @@ def create_app(config_name):
     login_manager.init_app(app)
     pagedown.init_app(app)
 
-    admin = Admin(app, name='admin')
-    admin.add_view(ModelView(User, db.session))
-    admin.add_view(ModelView(Post, db.session))
+    # app_admin = flask_admin.Admin(app, name='Admin', template_mode='bootstrap3')
 
     if app.config['SSL_REDIRECT']:
         from flask_sslify import SSLify
@@ -52,7 +47,7 @@ def create_app(config_name):
     from .api import api as api_blueprint
     app.register_blueprint(api_blueprint, url_prefix='/api/v1')
 
-    # from .admin import admin as admin_blueprint
-    # app.register_blueprint(admin_blueprint, url_prefix='/admin')
+    from .admin import admin as admin_blueprint
+    app.register_blueprint(admin_blueprint, url_prefix='/admin')
 
     return app
