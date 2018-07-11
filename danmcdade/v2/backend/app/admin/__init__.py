@@ -1,7 +1,7 @@
 import flask_admin
 from ..models import User, Post, Role, Comment, db
 from .admin_blueprint import AdminBlueprint
-from .views import AdminModelView, AdminView
+from .views import AdminModelView, AdminView, AdminIndex
 
 # admin = AdminBlueprint('admin', __name__, url_prefix='/admin', static_folder='static', static_url_path='/static/admin')
 admin = AdminBlueprint('admin', __name__)
