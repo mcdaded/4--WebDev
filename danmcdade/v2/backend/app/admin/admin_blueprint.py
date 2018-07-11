@@ -1,10 +1,11 @@
 from flask import Blueprint
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
+from .views import AdminIndex
 
 
 class AdminBlueprint(Blueprint):
-    views=None
+    views = None
 
     def __init__(self,*args, **kargs):
         self.views = []
@@ -15,9 +16,7 @@ class AdminBlueprint(Blueprint):
         self.views.append(view)
 
     def register(self, app, options, first_registration=False):
-        print(app)
-        admin = Admin(app, name='admin')
-        # admin = Admin(app, name='admin_site', template_mode='adminlte')
+        admin = Admin(app, name='admin', index_view=AdminIndex())
         for v in self.views:
             admin.add_view(v)
 
