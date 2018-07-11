@@ -7,7 +7,7 @@ from .views import AdminIndex
 class AdminBlueprint(Blueprint):
     views = None
 
-    def __init__(self,*args, **kargs):
+    def __init__(self, *args, **kargs):
         self.views = []
         # return super(AdminBlueprint, self).__init__('admin_blueprint', __name__, url_prefix='/admin', static_folder='static', static_url_path='/static/admin')
         return super(AdminBlueprint, self).__init__('admin_blueprint', __name__, url_prefix='/admin')
