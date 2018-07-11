@@ -13,7 +13,7 @@ class AdminIndex(AdminIndexView):
         return self.render('admin/index.html')
 
     def is_accessible(self):
-        return current_user.is_authenticated
+        return current_user.is_authenticated and current_user.is_administrator()
 
     def inaccessible_callback(self, name, **kwargs):
         # redirect to login page if user doesn't have access
@@ -39,8 +39,7 @@ class AdminView(BaseView):
 class AdminModelView(ModelView):
     """ Model view for Flask models """
     def is_accessible(self):
-        # return current_user.is_authenticated and current_user.is_administrator()
-        return current_user.is_authenticated 
+        return current_user.is_authenticated and current_user.is_administrator()
 
     def inaccessible_callback(self, name, **kwargs):
         # redirect to login page if user doesn't have access

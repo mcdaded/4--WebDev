@@ -16,9 +16,7 @@ class AdminBlueprint(Blueprint):
         self.views.append(view)
 
     def register(self, app, options, first_registration=False):
-        print(app)
         admin = Admin(app, name='admin', index_view=AdminIndex())
-        # admin = Admin(app, name='admin_site', template_mode='adminlte')
         for v in self.views:
             admin.add_view(v)
 
