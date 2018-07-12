@@ -9,8 +9,14 @@ class AdminBlueprint(Blueprint):
 
     def __init__(self, *args, **kargs):
         self.views = []
-        # return super(AdminBlueprint, self).__init__('admin_blueprint', __name__, url_prefix='/admin', static_folder='static', static_url_path='/static/admin')
-        return super(AdminBlueprint, self).__init__('admin_blueprint', __name__, url_prefix='/admin')
+        return super(AdminBlueprint, self).__init__(
+            'admin_blueprint',
+            __name__,
+            url_prefix='/admin',
+            static_folder='static',
+            static_url_path='/static/admin'
+        )
+        # return super(AdminBlueprint, self).__init__('admin_blueprint', __name__, url_prefix='/admin')
 
     def add_view(self, view):
         self.views.append(view)
