@@ -4,6 +4,7 @@ from flask_admin import BaseView, expose, AdminIndexView
 from flask_admin.contrib.sqla import ModelView
 from .. import db
 from ..models import User, Post
+from .forms import CKTextAreaField
 
 
 class AdminIndex(AdminIndexView):
@@ -38,6 +39,11 @@ class AdminView(BaseView):
 
 class AdminModelView(ModelView):
     """ Model view for Flask models """
+    form_overrides = dict(body=CKTextAreaField)
+
+    create_template = 'admin/create.html'
+    edit_template = 'admin/edit.html'
+
     def is_accessible(self):
         return current_user.is_authenticated and current_user.is_administrator()
 
