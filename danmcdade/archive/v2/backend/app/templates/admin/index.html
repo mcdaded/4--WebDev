@@ -1,0 +1,11 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+    Flask admin interface.
+    <a href="{{ url_for('.index') }}">Link</a>
+{% endblock %}
+
+{% block tail %}
+    {{ super() }}
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.0.1/ckeditor.js"></script>
+{% endblock %}
