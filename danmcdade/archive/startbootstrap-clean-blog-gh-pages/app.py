@@ -17,7 +17,7 @@ manager = Manager(app)
 
 @app.route("/")
 def index():
-    return render_template('index.html')
+    return render_template('post_flask.html')
 
 
 if __name__ == '__main__':
