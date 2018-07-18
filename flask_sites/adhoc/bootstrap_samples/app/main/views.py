@@ -15,10 +15,7 @@ def index():
 def hello():
     return render_template('hello.html')
 
+
 @main.route('/post', methods=['GET'])
 def post():
     return render_template('post.html')
-
-@main.route('/post2', methods=['GET'])
-def post2():
-    return render_template('post2.html')
