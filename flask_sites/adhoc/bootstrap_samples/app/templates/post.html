@@ -3,7 +3,6 @@
 {% block title %}Clean Blog - Start Bootstrap Theme{% endblock %}
 
 {% block content %}
-{{ super() }}
   {% block page_content %}
   <body>
     <header class="masthead" style="background-image: url({{ url_for('static', filename='img/post-bg.jpg') }})">
@@ -55,7 +54,11 @@
     </article>
   </body>
   {% endblock %}
+
+  <hr>
+
   {% block footer %}
   {{ super() }}
   {% endblock %}
+
 {% endblock %}
