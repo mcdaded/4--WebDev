@@ -5,34 +5,65 @@
 {% block title %}Dan McDade - Post{% endblock %}
 
 {% block page_content %}
-
-<div class="page-header">
-    <div class="post-title"><h2>{{ post.title }}</h2></div>
-</div>
-
-<div class="post-content">
-  <div class="post-date">{{ moment(post.timestamp).calendar() }}</div>
-  <div class="post-author">{{ post.author.username }}</div>
-  <div class="post-body">
-      {% if post.body_html %}
-          {{ post.body_html | safe }}
-      {% else %}
-          {{ post.body }}
-      {% endif %}
-  </div>
-  <div class="post-footer">
-    <a href="{{ url_for('.post', id=post.id) }}#comments">
-        <span class="label label-primary">{{ post.comments.count() }} Comments</span>
-    </a>
-  </div>
-</div>
-<h4 id="comments">Comments</h4>
-<div class="comment-form">
-    {{ wtf.quick_form(form) }}
-</div>
-{% if pagination %}
-<div class="pagination">
-    {{ macros.pagination_widget(pagination, '.post', fragment='#comments', id=post.id) }}
-</div>
-{% endif %}
+  <body>
+    <!-- <header class="masthead" style="background-image: url('img/post-bg.jpg')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-heading">
+              <h1>Man must explore, and this is exploration at its greatest</h1>
+              <h2 class="subheading">Problems look mighty small from 150 miles up</h2>
+              <span class="meta">Posted by
+                <a href="#">Start Bootstrap</a>
+                on August 24, 2018</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header> -->
+    <!-- <header class="masthead">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+          </div>
+        </div>
+      </div>
+    </header> -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <br><br><br>
+            <h2>{{ post.title }}</h2>
+          <!-- <span class="subheading">A Sample Theme by Start Bootstrap</span> -->
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-content">
+            <div class="post-date">{{ moment(post.timestamp).calendar() }}</div>
+            <div class="post-author">{{ post.author.username }}</div>
+            <div class="post-body">
+                {% if post.body_html %}
+                    {{ post.body_html | safe }}
+                {% else %}
+                    {{ post.body }}
+                {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <h4 id="comments">Comments</h4>
+    <div class="comment-form">
+        {{ wtf.quick_form(form) }}
+    </div>
+    {% if pagination %}
+    <div class="pagination">
+        {{ macros.pagination_widget(pagination, '.post', fragment='#comments', id=post.id) }}
+    </div>
+    {% endif %} -->
+  </body>
 {% endblock %}
