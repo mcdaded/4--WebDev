@@ -90,7 +90,7 @@ h5py==2.7.0
 heapdict==1.0.0
 hpack==3.0.0
 html5lib==0.9999999
-httplib2==0.10.3
+httplib2==0.18.0
 hyperframe==5.1.0
 idna==2.6
 imageio==2.2.0
