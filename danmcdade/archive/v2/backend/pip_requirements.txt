@@ -39,7 +39,7 @@ CommonMark==0.5.4
 contextlib2==0.5.5
 cookiecutter==1.6.0
 coverage==4.4.2
-cryptography==2.0.3
+cryptography==3.2
 cycler==0.10.0
 Cython==0.26.1
 cytoolz==0.8.2
