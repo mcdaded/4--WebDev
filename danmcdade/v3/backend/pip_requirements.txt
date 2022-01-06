@@ -27,7 +27,7 @@ boto3==1.5.22
 botocore==1.8.36
 Bottleneck==1.2.1
 bz2file==0.98
-celery==4.1.0
+celery==5.2.2
 certifi==2017.11.5
 cffi==1.10.0
 chardet==3.0.4
